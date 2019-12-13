@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import BarGraph from "././components/BarGraph";
+import Map from "./components/Map";
 import Select from "react-select";
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
         <Select options={options} />
       </div>
       <div>
-        <BarGraph />
+        <Map />
       </div>
     </div>
   );
