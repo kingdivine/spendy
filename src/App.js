@@ -18,7 +18,7 @@ const App = () => {
       <div>
         <Select options={options} />
       </div>
-      <div>
+      <div id="map">
         <Map />
       </div>
     </div>
