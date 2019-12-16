@@ -20,14 +20,14 @@ const Map = () => {
     });
   };
 
-  useEffect(() => {
-    const mapScript = document.createElement("script");
-    mapScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEY}`;
-    window.document.body.appendChild(mapScript);
-    mapScript.addEventListener("load", () => {
-      createMap();
-    });
-  }, []);
+  // useEffect(() => {
+  //   const mapScript = document.createElement("script");
+  //   mapScript.src = `https://maps.googleapis.com/maps/api/js?key=${KEY}`;
+  //   window.document.body.appendChild(mapScript);
+  //   mapScript.addEventListener("load", () => {
+  //     createMap();
+  //   });
+  // }, []);
 
   return <div ref={ref} id="map" style={mapStyle} />;
 };
