@@ -1,9 +1,26 @@
 import React, { useRef, useEffect } from "react";
 import Chart from "chart.js";
 
-const BarGraph = () => {
+const BarGraph = ({ transactions }) => {
   const ref = useRef();
+
+  const getDayCount = () => {
+    let dict = {};
+    for (let i = 0; i < transactions.length; i++) {
+      const transactionDate = new Date(transactions[i].created);
+      const day = transactionDate.getDay();
+      if (day in dict) {
+        dict[day] = dict[day] + 1;
+      } else {
+        dict[day] = 0;
+      }
+    }
+    console.log(dict);
+    return dict;
+  };
+
   useEffect(() => {
+    const dayCount = getDayCount();
     const ctx = ref.current.getContext("2d");
     new Chart(ctx, {
       type: "bar",
@@ -12,11 +29,21 @@ const BarGraph = () => {
         datasets: [
           {
             label: "Transactions",
-            data: [86, 67, 91, 67, 78, 89, 99]
+            data: Object.keys(dayCount).map(key => dayCount[key])
           }
         ]
       },
-      options: {}
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
+        }
+      }
     });
   });
 
