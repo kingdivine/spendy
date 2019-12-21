@@ -27,7 +27,7 @@ const App = () => {
   const GRAPHICS = {
     map: <Map />,
     barGraph: <BarGraph transactions={transactions} />,
-    wordCloud: <WordCloud />,
+    wordCloud: <WordCloud transactions={transactions} />,
     averageSpend: <AverageSpend />
   };
 

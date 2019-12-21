@@ -6,8 +6,11 @@ const BarGraph = ({ transactions }) => {
 
   const getDayCount = () => {
     let dict = {};
-    for (let i = 0; i < transactions.length; i++) {
-      const transactionDate = new Date(transactions[i].created);
+    const outgoings = transactions.filter(
+      transaction => transaction.amount < 0
+    );
+    for (let i = 0; i < outgoings.length; i++) {
+      const transactionDate = new Date(outgoings[i].created);
       const day = transactionDate.getDay();
       if (day in dict) {
         dict[day] = dict[day] + 1;
@@ -15,7 +18,6 @@ const BarGraph = ({ transactions }) => {
         dict[day] = 0;
       }
     }
-    console.log(dict);
     return dict;
   };
 
