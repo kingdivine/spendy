@@ -20,7 +20,9 @@ const App = () => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   useEffect(() => {
-    const data = dummydata.transactions; //replace with api call
+    const data = dummydata.transactions
+      .filter(transaction => transaction.amount < 0)
+      .filter(outgoing => outgoing.merchant !== null); //replace with api call
     setTransactions(data);
   }, []);
 
@@ -28,7 +30,7 @@ const App = () => {
     map: <Map />,
     barGraph: <BarGraph transactions={transactions} />,
     wordCloud: <WordCloud transactions={transactions} />,
-    averageSpend: <AverageSpend />
+    averageSpend: <AverageSpend transactions={transactions} />
   };
 
   const handleSelectChange = option => {
